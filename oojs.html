@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Object-oriented JavaScript example</title>
+  </head>
+
+  <body>
+    <div>
+      <label for="jscode">Enter code:</label>
+      <input type="text" id="jscode">
+      <button>Submit code</button>
+    </div>
+
+    <p></p>
+  </body>
+
+    <script>
+       Person = function(fname , lname , age , gender){
+           this.fname = fname || 'Person first name';
+           this.lname = lname || 'Person last name';
+           this.age = age ||20;
+           this.gender = gender || 'person gender';
+       };
+       
+       
+       Person.prototype.getFullName = function(){
+           return this.fname + " "+ this.lname;
+       };
+       
+       Person.prototype.getAge = function(){
+           return this.age;
+       };
+       Person.prototype.getAllDate = function(){
+           return "Name: "+this.fname +" "+this.lname +" Age: "+this.age;
+       };
+        Person.prototype.Showalert = function(){
+           alert("Name: "+this.fname +" "+this.lname +" Age: "+this.age);
+       };
+       var person1 = new Person('Maram','Sasi',21 ,'female');
+       var person2 = new Person('Mohammed','Sasi',30 ,'male');
+       var person3 = new Person('Ahmed','Omar',24 , 'male');
+       
+       
+       
+
+       function Doctor(first, last, age, gender, domain) {
+                Person.call(this, first, last, age, gender);
+
+                this.domain = domain;
+        }
+        Doctor.prototype = Object.create(Person.prototype);
+        Doctor.prototype.constructor= Doctor;
+        
+        Doctor.prototype.getAllDate =function(){
+            return "Name: "+this.fname +" "+this.lname +" Age: "+this.age +" Domain: " +this.domain;
+        };
+        doctor1 = new Doctor('Ali','Mohammed',35,'male','radiologist');
+        
+            
+       
+
+      var input = document.querySelector('input');
+      var btn = document.querySelector('button');
+      var para = document.querySelector('p');
+      btn.onclick = function() {
+        var code = input.value;
+
+         para.textContent = doctor1.getAllDate() ;
+         person3.Showalert();
+      }
+    </script>
+</html>
